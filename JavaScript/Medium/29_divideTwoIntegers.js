@@ -52,8 +52,15 @@ const divideWithoutMulDivMod = (dividend, divisor) => {
     }
 
     while(dividend >= divisor) {
-        result += 1
-        dividend = (dividend - divisor)
+        let a = divisor;
+        let mod = 1;
+        while(a + a <= dividend) {
+            a += a;
+            mod += mod;
+        }
+
+        result += mod;
+        dividend = (dividend - a);
     }
 
     return isNegative ? Math.max(-2147483647 , -result) : Math.min(2147483647 ,result)
@@ -62,5 +69,7 @@ const divideWithoutMulDivMod = (dividend, divisor) => {
 
 x = -2147483647
 
-y = 1
+y = 3
 console.log(divideWithoutMulDivMod(x,y))
+console.log(-2147483647 < -715827882)
+
